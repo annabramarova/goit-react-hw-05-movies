@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from '../../utils/api/fetchMovies';
 import { MoviesList } from 'components/MoviesList/MoviesList';
-import {Button, Form, Input} from './Searchbar.styled'
+import { Button, Form, Input } from './Searchbar.styled'
 
 export const SearchBar = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -11,7 +11,6 @@ export const SearchBar = () => {
     const handleSubmit = e => {
         setSearchParams({ search: e.target[0].value });
         e.preventDefault();
-        e.currentTarget.reset();
         return;
     }
 

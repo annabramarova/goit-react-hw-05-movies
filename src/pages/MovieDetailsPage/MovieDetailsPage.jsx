@@ -1,5 +1,7 @@
-import {useLocation, useParams, Link, Outlet} from 'react-router-dom';
+import { useLocation, useParams, Link, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 import { useMovieDetails } from '../../utils/hooks/useMovieDetails';
+import { Loader } from 'components/Loader/Loader';
 import { Preview, Img, SideBar, Button, Title, Genres, StyledLynk} from './MovieDetailsPage.styled';
 
 const MovieDetailsPage = () => {
@@ -35,13 +37,15 @@ const MovieDetailsPage = () => {
 
                 <ul>
                     <li>
-                        <StyledLynk to='cast'>Cast</StyledLynk>
+                        <StyledLynk to='cast' state={{from: backLinkHref}}>Cast</StyledLynk>
                     </li>
                     <li>
-                        <StyledLynk to='reviews'>Reviews</StyledLynk>
+                        <StyledLynk to='reviews' state={{from: backLinkHref}}>Reviews</StyledLynk>
                     </li>
                 </ul>
-                        <Outlet />
+                <Suspense fallback={<Loader />}>
+                    <Outlet />
+                </Suspense>
             </div>
         </div>
     )
